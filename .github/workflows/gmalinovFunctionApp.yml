@@ -34,6 +34,14 @@ jobs:
       with:
         name: functionapp
         path: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+  authenticate:
+    runs-on: windows-latest
+    steps:
+    - name: Azure login action
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSSession: true
   deploy:
     runs-on: windows-latest
     needs: build
